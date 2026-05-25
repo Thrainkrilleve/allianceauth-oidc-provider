@@ -9,7 +9,7 @@ logger = logging.getLogger(__name__)
 
 def debug_OIDC(sender, request, token, body, *args, **kwargs):
     if body:
-        logger.warning(body)
+        logger.debug(body)
 
 
 signals.app_authorized.connect(debug_OIDC)

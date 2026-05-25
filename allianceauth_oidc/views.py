@@ -30,8 +30,8 @@ def check_user_state_and_groups(user: User, app):
         log.debug(f"{user} is SU allowing full access")
         return
 
-    _states = app.states.count()
-    _groups = app.groups.count()
+    _states = app.states.exists()
+    _groups = app.groups.exists()
 
     group_access = False
     state_access = False
@@ -47,7 +47,7 @@ def check_user_state_and_groups(user: User, app):
         log.debug(
             f"OAUTH GROUP User: {user.groups.all()} APP: {app.groups.all()}")
         group_access = app.groups.filter(
-            name__in=user.groups.all().values_list('name', flat=True)).exists()
+            id__in=user.groups.values_list('id', flat=True)).exists()
     elif not _states and not _groups:
         group_access = True
 
@@ -74,7 +74,11 @@ class TokenView(OAuthLibMixin, View):
             access_token = json.loads(body).get("access_token")
             if access_token is not None:
                 token = get_access_token_model().objects.get(token=access_token)
-                check_user_state_and_groups(token.user, token.application)
+                try:
+                    check_user_state_and_groups(token.user, token.application)
+                except PermissionDenied:
+                    token.revoke()
+                    raise
                 _body = None
                 if token.application.debug_mode:
                     _body = body
