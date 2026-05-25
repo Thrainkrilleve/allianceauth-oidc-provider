@@ -4,7 +4,7 @@ build-backend = "flit_core.buildapi"
 
 [project]
 name = "allianceauth-oidc-provider"
-authors = [{name = "AaronKable", email = "aaronkable@gmail.com"}]
+authors = [{name = "AaronKable", email = "aaronkable@gmail.com"}, {name = "Thrainkrilleve", email = "contact@eve-linknet.com"}]
 readme = "README.md"
 license = {file = "LICENSE"}
 classifiers = [
@@ -17,6 +17,7 @@ classifiers = [
     "Programming Language :: Python :: 3.9",
     "Programming Language :: Python :: 3.10",
     "Programming Language :: Python :: 3.11",
+    "Programming Language :: Python :: 3.12",
 ]
 dependencies = [
     "allianceauth>=4.0.0",
@@ -26,9 +27,9 @@ dependencies = [
 dynamic = ["version", "description"]
 
 [project.urls]
-Homepage = "https://github.com/Solar-Helix-Independent-Transport/allianceauth-oidc-provider"
-Source = "https://github.com/Solar-Helix-Independent-Transport/allianceauth-oidc-provider"
-Tracker = "https://github.com/Solar-Helix-Independent-Transport/allianceauth-oidc-provider/issues"
+Homepage = "https://github.com/Thrainkrilleve/allianceauth-oidc-provider"
+Source = "https://github.com/Thrainkrilleve/allianceauth-oidc-provider"
+Tracker = "https://github.com/Thrainkrilleve/allianceauth-oidc-provider/issues"
 
 [tool.flit.module]
 name = "allianceauth_oidc"
